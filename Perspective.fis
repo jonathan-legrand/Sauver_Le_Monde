@@ -1,0 +1,73 @@
+[System]
+Name='Variation'
+Type='mamdani'
+Version=2.0
+NumInputs=3
+NumOutputs=1
+NumRules=27
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='Espérance_de_vie'
+Range=[0 80]
+NumMFs=3
+MF1='Faible':'trapmf',[0 0 8 12]
+MF2='Moyenne':'trapmf',[8 12 25 32]
+MF3='Elevée':'trapmf',[25 32 83.2 108.8]
+
+[Input2]
+Name='Evolution_effectif'
+Range=[-100 100]
+NumMFs=3
+MF1='Décroissante':'trapmf',[-101 -100 -50 -5]
+MF2='Stable':'trapmf',[-50 -5 5 50]
+MF3='Croissante':'trapmf',[5 50 100 101]
+
+[Input3]
+Name='Reproduction'
+Range=[0 1]
+NumMFs=3
+MF1='Fragile':'trimf',[-0.4 0 0.4]
+MF2='Correcte':'trimf',[0.1 0.5 0.9]
+MF3='Robuste':'trimf',[0.6 1 1.4]
+
+[Output1]
+Name='Population'
+Range=[0 1]
+NumMFs=3
+MF1='Déclinante':'trimf',[-0.4 0 0.4]
+MF2='Stable':'trimf',[0.1 0.5 0.9]
+MF3='Croissante':'trimf',[0.6 1 1.4]
+
+[Rules]
+1 1 1, 1 (1) : 1
+1 1 2, 1 (1) : 1
+1 1 3, 1 (1) : 1
+1 2 1, 1 (1) : 1
+1 2 2, 2 (1) : 1
+1 2 3, 2 (1) : 1
+1 3 1, 2 (1) : 1
+1 3 2, 2 (1) : 1
+1 3 3, 3 (1) : 1
+2 1 1, 1 (1) : 1
+2 1 2, 1 (1) : 1
+2 1 3, 2 (1) : 1
+2 2 1, 1 (1) : 1
+2 2 2, 2 (1) : 1
+2 2 3, 3 (1) : 1
+2 3 1, 2 (1) : 1
+2 3 2, 3 (1) : 1
+2 3 3, 3 (1) : 1
+3 1 1, 1 (1) : 1
+3 1 2, 2 (1) : 1
+3 1 3, 2 (1) : 1
+3 2 1, 2 (1) : 1
+3 2 2, 2 (1) : 1
+3 2 3, 3 (1) : 1
+3 3 1, 2 (1) : 1
+3 3 2, 3 (1) : 1
+3 3 3, 3 (1) : 1

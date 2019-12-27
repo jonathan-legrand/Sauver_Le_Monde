@@ -1,0 +1,47 @@
+[System]
+Name='Fusion_Branches1-2'
+Type='mamdani'
+Version=2.0
+NumInputs=2
+NumOutputs=1
+NumRules=9
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='Population'
+Range=[0 1]
+NumMFs=3
+MF1='Mauvais':'trimf',[-0.4 0 0.4]
+MF2='Stable':'trimf',[0.1 0.5 0.9]
+MF3='Optimal':'trimf',[0.6 1 1.4]
+
+[Input2]
+Name='Environnement'
+Range=[0 1]
+NumMFs=3
+MF1='Bon':'trimf',[-0.4 0 0.4]
+MF2='Moyen':'trimf',[0.1 0.5 0.9]
+MF3='Mauvais':'trimf',[0.6 1 1.4]
+
+[Output1]
+Name='Ecosystème'
+Range=[0 1]
+NumMFs=3
+MF1='Correct':'trimf',[-0.4 0 0.4]
+MF2='Moyen':'trimf',[0.1 0.5 0.9]
+MF3='Exécrable':'trimf',[0.6 1 1.4]
+
+[Rules]
+1 3, 3 (1) : 1
+1 2, 3 (1) : 1
+1 1, 2 (1) : 1
+2 3, 3 (1) : 1
+2 2, 2 (1) : 1
+2 1, 1 (1) : 1
+3 3, 2 (1) : 1
+3 2, 1 (1) : 1
+3 1, 1 (1) : 1

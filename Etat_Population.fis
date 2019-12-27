@@ -1,0 +1,47 @@
+[System]
+Name='Etat_Population'
+Type='mamdani'
+Version=2.0
+NumInputs=2
+NumOutputs=1
+NumRules=9
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='Individus'
+Range=[0 1000000]
+NumMFs=3
+MF1='Faible':'trapmf',[0 0 20000 40000]
+MF2='Moyen':'trapmf',[25000 60000 100000 120000]
+MF3='Elevé':'trapmf',[100000 150000 1040000 1360000]
+
+[Input2]
+Name='Perspective'
+Range=[0 1]
+NumMFs=3
+MF1='Déclinante':'trimf',[-0.4 0 0.4]
+MF2='Stable':'trimf',[0.1 0.5 0.9]
+MF3='Croissante':'trimf',[0.6 1 1.4]
+
+[Output1]
+Name='Etat_Population'
+Range=[0 1]
+NumMFs=3
+MF1='Mauvais':'trimf',[-0.4 0 0.4]
+MF2='Stable':'trimf',[0.1 0.5 0.9]
+MF3='Optimal':'trimf',[0.6 1 1.4]
+
+[Rules]
+1 1, 1 (1) : 1
+1 2, 1 (1) : 1
+1 3, 1 (1) : 1
+2 1, 1 (1) : 1
+2 2, 2 (1) : 1
+2 3, 2 (1) : 1
+3 1, 2 (1) : 1
+3 2, 3 (1) : 1
+3 3, 3 (1) : 1

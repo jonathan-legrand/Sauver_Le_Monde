@@ -1,0 +1,73 @@
+[System]
+Name='Menaces'
+Type='mamdani'
+Version=2.0
+NumInputs=3
+NumOutputs=1
+NumRules=27
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='Concurrence'
+Range=[0 10]
+NumMFs=3
+MF1='Faible':'trapmf',[0 0 1 3]
+MF2='Moyenne':'trapmf',[1 3 4 6]
+MF3='Forte':'trapmf',[4 6 10 10]
+
+[Input2]
+Name='Prédateurs'
+Range=[0 1]
+NumMFs=3
+MF1='Négligeable':'trimf',[-0.4 0 0.4]
+MF2='Moyenne':'trimf',[0.1 0.5 0.9]
+MF3='Forte':'trimf',[0.6 1 1.4]
+
+[Input3]
+Name='Pollution'
+Range=[0 1]
+NumMFs=3
+MF1='Acceptable':'trimf',[-0.4 0 0.4]
+MF2='Moyen':'trimf',[0.1 0.5 0.9]
+MF3='Critique':'trimf',[0.6 1 1.4]
+
+[Output1]
+Name='Menaces'
+Range=[0 1]
+NumMFs=3
+MF1='Négligeables':'trimf',[-0.4 0 0.4]
+MF2='Moyennes':'trimf',[0.1 0.5 0.9]
+MF3='Importantes':'trimf',[0.6 1 1.4]
+
+[Rules]
+1 1 1, 1 (1) : 1
+1 1 2, 2 (1) : 1
+1 1 3, 3 (1) : 1
+1 2 1, 1 (1) : 1
+1 2 2, 2 (1) : 1
+1 2 3, 3 (1) : 1
+1 3 1, 2 (1) : 1
+1 3 2, 3 (1) : 1
+1 3 3, 3 (1) : 1
+2 1 1, 1 (1) : 1
+2 1 2, 2 (1) : 1
+2 1 3, 3 (1) : 1
+2 2 1, 2 (1) : 1
+2 2 2, 2 (1) : 1
+2 2 3, 3 (1) : 1
+2 3 1, 2 (1) : 1
+2 3 2, 3 (1) : 1
+2 3 3, 3 (1) : 1
+3 1 1, 2 (1) : 1
+3 1 2, 3 (1) : 1
+3 1 3, 3 (1) : 1
+3 2 1, 3 (1) : 1
+3 2 2, 3 (1) : 1
+3 2 3, 3 (1) : 1
+3 3 1, 3 (1) : 1
+3 3 2, 3 (1) : 1
+3 3 3, 3 (1) : 1
