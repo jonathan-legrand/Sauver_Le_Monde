@@ -24,7 +24,7 @@ SF1 = readfis('Reproduction.fis');
 prompt = {'Temps de gestation: ',...
     'Nombre d''enfants par portée :'};
 
-def = {'140','5'};
+def = {'450','1'};
 dlgTitle = 'Système reproduction';
 lineNo = 1;
 answer = inputdlg(prompt,dlgTitle,lineNo,def);
@@ -67,7 +67,7 @@ SF3 = readfis('Perspective.fis');
 prompt = {'Espérance de vie : ',...
     'Evolution de l''effectif en % :'};
 %% Valeurs par défaut, titre...
-def = {'20','4.5'};
+def = {'40','-90'};
 dlgTitle = 'Exemple d’algorithme de Zalila';
 lineNo = 1;
 answer = inputdlg(prompt,dlgTitle,lineNo,def);
@@ -116,7 +116,7 @@ irr1=[];
 %Récupération de la variable nette
 prompt = {'Nombre d''individus : '};
 %% Valeurs par défaut, titre
-def = {'50000'};
+def = {'5000'};
 dlgTitle = 'Etat de la population';
 lineNo = 1;
 answer = inputdlg(prompt,dlgTitle,lineNo,def);
@@ -173,7 +173,7 @@ SF4 = readfis('Habitat.fis');
 prompt = {'Déforestation (ou reforestation si >0, en %): ',...
     'Agriculture (en % du territoire occupé :'};
 
-def = {'-5','50'};
+def = {'-4.28','54.72'};
 dlgTitle = 'Système habitat';
 lineNo = 1;
 answer = inputdlg(prompt,dlgTitle,lineNo,def);
@@ -213,7 +213,7 @@ SF5 = readfis('Territoire.fis');
 %%Récupération des données
 prompt = {'Zone d''occupation : ',...
     'Zone d''extinction :'};
-def = {'22','8'};
+def = {'12','3'};
 dlgTitle = 'Système Territoire';
 lineNo = 1;
 answer = inputdlg(prompt,dlgTitle,lineNo,def);
@@ -260,7 +260,7 @@ SF6 = readfis('Besoins.fis');
 %% On récupère les données
 prompt = {'Masse ingérée par jour (kg): ',...
     'Régime alimentaire (herbivore:2, carnivore:5) :'};
-def = {'140','5'};
+def = {'50','2'};
 dlgTitle = 'Système Besoins';
 lineNo = 1;
 answer = inputdlg(prompt,dlgTitle,lineNo,def);
@@ -301,7 +301,7 @@ prompt = {'CCV: ',...
     'Emissions de CO2 (kT): ',...
     'Taux de particules fines: '};
 
-def = {'.5','140','30'};
+def = {'.52','119.05','26.42'};
 dlgTitle = 'Système Pollution';
 lineNo = 1;
 answer = inputdlg(prompt,dlgTitle,lineNo,def);
@@ -343,7 +343,7 @@ SF11 = readfis('Prédateurs.fis');
 %% On récupère les données en entrée
 prompt = {'Nombre de prédateurs: ',...
     'Agressivité (kg de viande) :'};
-def = {'1','7'};
+def = {'0','0'};
 dlgTitle = 'Système Prédateurs';
 lineNo = 1;
 answer = inputdlg(prompt,dlgTitle,lineNo,def);
@@ -382,7 +382,7 @@ irr12=[];
 
 %% On récupère les données
 prompt = {'Concurrence : '};
-def = {'5'};
+def = {'0'};
 dlgTitle = 'Système Menace';
 lineNo = 1;
 answer = inputdlg(prompt,dlgTitle,lineNo,def);
@@ -488,7 +488,7 @@ SF101 = readfis('Violence.fis');
 prompt = {'Coefficient de braconnage: ',...
     'Durée de conflit moyenne par zone d''occupation :'};
 
-def = {'0.7','8'};
+def = {'0.97','8.33'};
 dlgTitle = 'Système Violence';
 lineNo = 1;
 answer = inputdlg(prompt,dlgTitle,lineNo,def);
@@ -532,7 +532,7 @@ SF100 = readfis('Impact.fis');
 prompt = {'Présence humaine (Variation?): ',...
     'Zones protégées en % de la zone d''ocupation:'};
 %% Valeurs par défaut, titre...
-def = {'2.5','15'};
+def = {'2.29','18.65'};
 dlgTitle = 'Système Impact';
 lineNo = 1;
 answer = inputdlg(prompt,dlgTitle,lineNo,def);
@@ -626,11 +626,11 @@ irr1=[];
 
 % Nombre de règles/conséquences
 nbruleSF1 = length(SF1.rule);
-nbCsqSF1 = 3;
+nbCsqSF1 = 4;
 
 
 for i = 1:nbruleSF1 % Boucle sur les règles (Population)
-    irr1(i,1) = csqSF1(SF1.rule(i).antecedent(1));
+    irr1(i,1) = csqSF12(SF1.rule(i).antecedent(1));
 end
 
 
@@ -646,8 +646,12 @@ csqSF1 = zeros(1,nbCsqSF1); for i = 1:nbruleSF1
     csqSF1(SF1.rule(i).consequent) = max(csqSF1(SF1.rule(i).consequent),...
         declenchementSF1(i)); end
 % Concaténation de texte
-CsqSF1Txt = 'DECISION FINALE: = {'; for i = 1:nbCsqSF1
+CsqSF1Txt = 'DECISION FINALE: = {'; 
+for i = 1:nbCsqSF1
     CsqSF1Txt = [CsqSF1Txt, '(', SF1.output.mf(i).name, ';',...
-        num2str(csqSF1(i)), '), ']; end; CsqSF1Txt = [CsqSF1Txt(1:end-2), '}']; disp(CsqSF1Txt);
+        num2str(csqSF1(i)), '), ']; 
+end; 
+CsqSF1Txt = [CsqSF1Txt(1:end-2), '}']; 
+disp(CsqSF1Txt);
 
 
