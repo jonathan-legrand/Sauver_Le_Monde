@@ -654,4 +654,15 @@ end;
 CsqSF1Txt = [CsqSF1Txt(1:end-2), '}']; 
 disp(CsqSF1Txt);
 
+decision="Pas de décision";
+possibilite=0;
+for i = 1:nbCsqSF1;
+    if csqSF1(i)>possibilite;
+        decision=SF1.output.mf(i).name;
+        possibilite=csqSF1(i);
+    end
+end
+decision=[ 'Décision par valeur modale: ', decision, ' avec un degré de possibilité de ', num2str(possibilite)];
+disp(decision);
+
 
